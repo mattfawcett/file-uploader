@@ -1195,7 +1195,6 @@ qq.extend(qq.UploadHandlerXhr.prototype, {
         };
 
         params = params || {};
-        params['qqfile'] = name;
 
         if(self._options.multipart){
           var queryString = this._options.action;
@@ -1204,9 +1203,10 @@ qq.extend(qq.UploadHandlerXhr.prototype, {
             var paramValue = params[paramName];
             data.append(paramName, paramValue);
           }
-          data.append("file", file);
+          data.append("qqfile", file);
         } else {
           // build query string
+          params['qqfile'] = name;
           var queryString = qq.obj2url(params, this._options.action);
           var data = file;
         }
